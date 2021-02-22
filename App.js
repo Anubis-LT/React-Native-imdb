@@ -3,7 +3,6 @@ import React from "react";
 import {
    Text,
    View,
-   Button,
    TouchableOpacity,
    ScrollView,
    SafeAreaView,
@@ -12,12 +11,10 @@ import {
    StyleSheet,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-// Constants est un objet qui fournit des informations sur l'appareil
 import Constants from "expo-constants";
-// Import du fichier de couleurs
 import colors from "./assets/colors";
 
-const { white, lightGrey, middleGrey, darkGrey, blue, green } = colors;
+const { white, lightGrey, middleGrey, darkGrey, blue, green, black } = colors;
 export default function App() {
    return (
       <SafeAreaView style={styles.container}>
@@ -107,6 +104,62 @@ export default function App() {
                   </View>
                </View>
             </View>
+            {/* top Billed Cast */}
+            <View style={styles.topBilledCast}>
+               <View style={styles.topBilledCast_title}>
+                  <Text style={styles.h1}>Top Billed Cast</Text>
+                  <Text style={styles.topBilledCast_title_text}>SEE ALL</Text>
+               </View>
+               <ScrollView horizontal>
+                  <View style={styles.topBilledCast_actors}>
+                     <View style={styles.topBilledCast_actor}>
+                        <Image
+                           source={require("./assets/mattew.jpg")}
+                           style={styles.img_actors}
+                           resizeMode="contain"
+                        ></Image>
+                        <Text style={styles.h2}>Matthew McConaughey</Text>
+                        <Text style={styles.h3}>Cooper</Text>
+                     </View>
+                     <View style={styles.topBilledCast_actor}>
+                        <Image
+                           source={require("./assets/mackenzie.jpg")}
+                           style={styles.img_actors}
+                           resizeMode="contain"
+                        ></Image>
+                        <Text style={styles.h2}>Mackenzie Foy</Text>
+                        <Text style={styles.h3}>Murph</Text>
+                     </View>
+                     <View style={styles.topBilledCast_actor}>
+                        <Image
+                           source={require("./assets/anne.jpg")}
+                           style={styles.img_actors}
+                           resizeMode="contain"
+                        ></Image>
+                        <Text style={styles.h2}>Anne Hathaway</Text>
+                        <Text style={styles.h3}>Brand</Text>
+                     </View>
+                     <View style={styles.topBilledCast_actor}>
+                        <Image
+                           source={require("./assets/bill.jpg")}
+                           style={styles.img_actors}
+                           resizeMode="contain"
+                        ></Image>
+                        <Text style={styles.h2}>Bill Irwin</Text>
+                        <Text style={styles.h3}>Tars</Text>
+                     </View>
+                  </View>
+               </ScrollView>
+               <View>
+                  <Text style={styles.h2}>Director</Text>
+                  <Text style={styles.h3}>Christophe Nolan</Text>
+                  <Text style={styles.h2}>Writers</Text>
+                  <Text style={styles.h3}>
+                     Jonathan Nolan (written by) and Christopher Nolan(written
+                     by)
+                  </Text>
+               </View>
+            </View>
          </ScrollView>
       </SafeAreaView>
    );
@@ -119,16 +172,12 @@ const styles = StyleSheet.create({
       marginTop: 5,
    },
    scrollView: {
-      // on applique un marginTop de la hauteur de la statusBar sur Android seulement
-      // marginTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
+      marginTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
    },
-   container: { backgroundColor: darkGrey },
+   container: { backgroundColor: white },
    header: {
       height: 50,
       flexDirection: "row",
-   },
-   bgGrey: {
-      backgroundColor: middleGrey,
    },
    movies: {
       backgroundColor: darkGrey,
@@ -136,6 +185,8 @@ const styles = StyleSheet.create({
       flexDirection: "column",
    },
    h1: { color: white, fontSize: 30, marginLeft: 10 },
+   h2: { color: white, fontSize: 12, marginLeft: 10 },
+   h3: { color: lightGrey, fontSize: 12, marginLeft: 10 },
    movies_Description: { flexDirection: "row", marginTop: 10 },
    movies_Description_Text: { color: lightGrey, fontSize: 10, marginLeft: 10 },
    summary: {
@@ -173,9 +224,6 @@ const styles = StyleSheet.create({
       width: 90,
       marginRight: 10,
       marginLeft: 10,
-      //borderStyle: "solid",
-      //borderColor: white,
-      //borderWidth: 1,
    },
    rates_text: { color: white, fontSize: 12, alignItems: "baseline" },
    rates_score: { flexDirection: "row" },
@@ -195,4 +243,23 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       color: white,
    },
+
+   topBilledCast: {
+      backgroundColor: darkGrey,
+      height: 420,
+      flexDirection: "column",
+      paddingTop: 10,
+      paddingLeft: 10,
+   },
+   topBilledCast_title: {
+      paddingBottom: 10,
+      flexDirection: "row",
+      alignItems: "baseline",
+      justifyContent: "space-between",
+   },
+   topBilledCast_title_text: { color: blue },
+   img_actors: { height: 250, width: 160, alignSelf: "stretch" },
+   topBilledCast_actors: { flexWrap: "wrap" },
+   topBilledCast_actor: { paddingRight: 10, backgroundColor: middleGrey },
+   topBilledCast_text: { color: white },
 });
